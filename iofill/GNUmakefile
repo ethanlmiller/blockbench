@@ -1,12 +1,12 @@
 #
-# Makefile for ioload
+# Makefile for iofill
 #
 #
 
-SRCS = iol_init iol_iotest iol_main iol_output
-INCLUDES = ioload.h
+SRCS = iof_init iof_iotest iof_main iof_output
+INCLUDES = iofill.h
 OPTFLAGS = -O3
-TARGET = ioload
+TARGET = iofill
 
 OBJS = $(addsuffix .o, $(SRCS))
 LOBJS = $(addsuffix .lo, $(SRCS))
