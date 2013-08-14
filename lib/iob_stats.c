@@ -81,13 +81,7 @@ iob_details_reset(int clear)
 	if (clear) {
 		memset(details, 0, niodet * sizeof (struct iodet));
 	}
-#if defined(__SUNPRO_C)
-        atomic_and_64(&cur_iodet, (uint64_t)0);
-#elif defined(__hpux)
-        atomic_inc_64(&cur_iodet);
-#else
-	__sync_fetch_and_and(&cur_iodet, (uint64_t)0);
-#endif
+        *(volatile uint64_t *)&cur_iodet = (volatile uint64_t)0;
 	return;
 }
 

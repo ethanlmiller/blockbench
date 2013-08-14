@@ -70,6 +70,8 @@ char		*iob_dttochr(int dtype);
 void		iob_dedupdata(char *bp, uint32_t size, int dtype, uint64_t srcbno);
 void		iob_verifydata(char *bp, char *bp2, uint32_t size, int dtype, uint64_t dedupblks,
 			      uint64_t seqno, uint16_t runid, uint32_t basetime, uint32_t *cksump, uint16_t *srcidp);
+ssize_t         iob_read  (int fd, char *buf, uint32_t length, uint64_t offset);
+ssize_t         iob_write (int fd, char *buf, uint32_t length, uint64_t offset);
 
 #define	IOB_SYNC_CACHE_16		0
 #define	IOB_SYNC_CACHE_10		1

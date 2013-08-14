@@ -240,8 +240,3 @@ void		init_threads(int nfiles, char *filenames[], struct cmdparams *cp);
 extern struct fthread	*flist;
 extern char		*outputfile;
 extern uint64_t		statusmb;
-
-#if defined(__CYGWIN__)
-extern ssize_t	cyg_read(int fd, char *buf, uint32_t length, uint64_t offset);
-extern ssize_t	cyg_write(int fd, char *buf, uint32_t length, uint64_t offset);
-#endif

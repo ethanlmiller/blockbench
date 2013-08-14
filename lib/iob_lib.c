@@ -428,3 +428,25 @@ iob_dedupdata(char *bp, uint32_t size, int dtype, uint64_t srcbno)
 	}
 	return;
 }
+
+ssize_t
+iob_read (int fd, char *buf, uint32_t length, uint64_t offset)
+{
+#if     defined(__CYGWIN__)
+        lseek(fd, offset, SEEK_SET);
+        return (read(fd, buf, count) );
+#else
+        return (pread (fd, buf, length, offset) );
+#endif
+}
+
+ssize_t
+iob_write (int fd, char *buf, uint32_t length, uint64_t offset)
+{
+#if     defined(__CYGWIN__)
+        lseek(fd, offset, SEEK_SET);
+        return (write(fd, buf, count) );
+#else
+        return (pwrite (fd, buf, length, offset) );
+#endif
+}

@@ -198,17 +198,9 @@ io_start(struct ioreq *rp, char *rbp, char *wbp)
 			ret = idp->size;
 		}
 	} else if (idp->type == READ) {
-#if defined(__CYGWIN__)
-            ret = cyg_read(rp->fd, rbp, idp->size, idp->offset);
-#else
-		ret = pread(rp->fd, rbp, idp->size, idp->offset);
-#endif
+                ret = iob_read(rp->fd, rbp, idp->size, idp->offset);
 	} else {
-#if defined(__CYGWIN__)
-            ret = cyg_write(rp->fd, wbp, idp->size, idp->offset);
-#else
-		ret = pwrite(rp->fd, wbp, idp->size, idp->offset);
-#endif
+                ret = iob_write(rp->fd, wbp, idp->size, idp->offset);
 	}
 	if (ret != idp->size) {
 		rp->error = 1;
@@ -255,21 +247,3 @@ io_finish(struct iothread *tp, struct ioreq *rp, struct iodet *idp)
 	}
 	return;
 }
-
-#if defined(__CYGWIN__)
-
-ssize_t
-cyg_write(int fd, char *buf, uint32_t count, uint64_t offset)
-{
-        lseek(fd, offset, SEEK_SET);
-        return write(fd, buf, count);
-}
-
-ssize_t
-cyg_read(int fd, char *buf, uint32_t count, uint64_t offset)
-{
-        lseek(fd, offset, SEEK_SET);
-        return read(fd, buf, count);
-}
-
-#endif

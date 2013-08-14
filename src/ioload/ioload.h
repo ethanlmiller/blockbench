@@ -181,8 +181,3 @@ extern int		verbose;
 extern int		lat_details;
 extern int		longlats;
 extern int		ign_errors;
-
-#if defined(__CYGWIN__)
-extern ssize_t	cyg_read(int fd, char *buf, uint32_t length, uint64_t offset);
-extern ssize_t	cyg_write(int fd, char *buf, uint32_t length, uint64_t offset);
-#endif
