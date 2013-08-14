@@ -1,7 +1,10 @@
+bin_PROGRAMS = ioload
+
 ioload_SOURCES = iol_init.c \
                  iol_iotest.c \
                  iol_main.c \
                  iol_output.c
-bin_PROGRAMS = ioload
-LDADD = -L../../lib -liobench
-INCLUDES = -I$(top_builddir)/lib
+
+ioload_LDADD = -L../../lib -liobench
+ioload_INCLUDES = ioload.h
+ioload_CPPFLAGS = -I$(top_builddir)/lib

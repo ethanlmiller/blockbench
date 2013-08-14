@@ -34,6 +34,7 @@
 #define	_LARGEFILE_SOURCE	1
 #define	_GNU_SOURCE		1
 
+#include        <config.h>
 #include	<stdint.h>
 #include	<sys/types.h>
 #include	<sys/stat.h>

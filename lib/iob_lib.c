@@ -121,7 +121,7 @@ iob_infolog(char *fmt, ...)
 	return;
 }
 
-#if defined(sun) || defined(__sun) || defined(__hpux)
+#if defined(HAVE_GETHRTIME)
 
 uint64_t
 iob_gettime(void)
@@ -130,7 +130,7 @@ iob_gettime(void)
 	return gethrtime();
 }
 
-#else	/* Linux */
+#elif defined(HAVE_CLOCK_GETTIME)
 
 uint64_t
 iob_gettime(void)
@@ -141,7 +141,7 @@ iob_gettime(void)
 	return (uint64_t)ts.tv_sec * IOB_NSEC_TO_SEC + ts.tv_nsec;
 }
 
-#endif	/* Solaris or Linux */
+#endif
 
 uint32_t
 iob_strtoul(char *value, char **endp, int base)

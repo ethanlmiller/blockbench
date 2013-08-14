@@ -1,5 +1,5 @@
 noinst_LIBRARIES = libiobench.a
-libiobench_a_SOURCES = iob_lib.c \
+libiobench_A_SOURCES = iob_lib.c \
                        iob_pstdata.c \
                        iob_scsi.c \
                        iob_stats.c \

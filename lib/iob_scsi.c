@@ -389,8 +389,8 @@ drive_unmap(int fd, uint64_t offset, int length)
 
 #include	<sys/ioctl.h>
 #include	<scsi/scsi_ioctl.h>
-#include	<sg_lib.h>
-#include	<sg_io_linux.h>
+#include	<scsi/sg_lib.h>
+#include	<scsi/sg_io_linux.h>
 
 STATIC void	issue_sgio(int fd, sg_io_hdr_t *hdrp, char *str);
 STATIC void	drive_int_flush_cache_sync_cache_16(int fd);

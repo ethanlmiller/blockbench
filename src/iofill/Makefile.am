@@ -1,7 +1,10 @@
+bin_PROGRAMS = iofill
+
 iofill_SOURCES = iof_init.c \
                  iof_iotest.c \
                  iof_main.c \
                  iof_output.c
-bin_PROGRAMS = iofill
-LDADD = -L../../lib -liobench
-INCLUDES = -I$(top_builddir)/lib
+
+iofill_LDADD = -L../../lib -liobench
+iofill_INCLUDES = iofill.h
+iofill_CPPFLAGS = -I$(top_builddir)/lib
