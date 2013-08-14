@@ -1,0 +1,15 @@
+blockbench
+==========
+
+blockbench is a set of benchmarking tools for generating and measuring storage system
+performance on block-based workloads.  There are three basic tools provided by this suite:
+
+iofill: Quickly fills a volume with random data
+ioload: Runs extensive tests on a volume
+
+ioloadgen: More complex / feature-full load generator, capable of both fill and load on
+           multiple volumes.
+
+For more details on each of these tools, and on the distribution as a whole, please see
+the latex / PDF files in the doc/ directory.
+
