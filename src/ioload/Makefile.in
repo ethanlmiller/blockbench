@@ -52,6 +52,9 @@ am_ioload_OBJECTS = ioload-iol_init.$(OBJEXT) \
 	ioload-iol_output.$(OBJEXT)
 ioload_OBJECTS = $(am_ioload_OBJECTS)
 ioload_DEPENDENCIES =
+ioload_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CCLD) $(ioload_CFLAGS) $(CFLAGS) \
+	$(ioload_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -193,8 +196,10 @@ ioload_SOURCES = iol_init.c \
                  iol_output.c
 
 ioload_LDADD = -L../../lib -liobench
+ioload_LDFLAGS = -all-static
 ioload_INCLUDES = ioload.h
 ioload_CPPFLAGS = -I$(top_builddir)/lib
+ioload_CFLAGS = -O3
 all: all-am
 
 .SUFFIXES:
@@ -274,7 +279,7 @@ clean-binPROGRAMS:
 	rm -f $$list
 ioload$(EXEEXT): $(ioload_OBJECTS) $(ioload_DEPENDENCIES) 
 	@rm -f ioload$(EXEEXT)
-	$(LINK) $(ioload_OBJECTS) $(ioload_LDADD) $(LIBS)
+	$(ioload_LINK) $(ioload_OBJECTS) $(ioload_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -309,60 +314,60 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 ioload-iol_init.o: iol_init.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ioload-iol_init.o -MD -MP -MF $(DEPDIR)/ioload-iol_init.Tpo -c -o ioload-iol_init.o `test -f 'iol_init.c' || echo '$(srcdir)/'`iol_init.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(ioload_CFLAGS) $(CFLAGS) -MT ioload-iol_init.o -MD -MP -MF $(DEPDIR)/ioload-iol_init.Tpo -c -o ioload-iol_init.o `test -f 'iol_init.c' || echo '$(srcdir)/'`iol_init.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ioload-iol_init.Tpo $(DEPDIR)/ioload-iol_init.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iol_init.c' object='ioload-iol_init.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ioload-iol_init.o `test -f 'iol_init.c' || echo '$(srcdir)/'`iol_init.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(ioload_CFLAGS) $(CFLAGS) -c -o ioload-iol_init.o `test -f 'iol_init.c' || echo '$(srcdir)/'`iol_init.c
 
 ioload-iol_init.obj: iol_init.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ioload-iol_init.obj -MD -MP -MF $(DEPDIR)/ioload-iol_init.Tpo -c -o ioload-iol_init.obj `if test -f 'iol_init.c'; then $(CYGPATH_W) 'iol_init.c'; else $(CYGPATH_W) '$(srcdir)/iol_init.c'; fi`
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(ioload_CFLAGS) $(CFLAGS) -MT ioload-iol_init.obj -MD -MP -MF $(DEPDIR)/ioload-iol_init.Tpo -c -o ioload-iol_init.obj `if test -f 'iol_init.c'; then $(CYGPATH_W) 'iol_init.c'; else $(CYGPATH_W) '$(srcdir)/iol_init.c'; fi`
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ioload-iol_init.Tpo $(DEPDIR)/ioload-iol_init.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iol_init.c' object='ioload-iol_init.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ioload-iol_init.obj `if test -f 'iol_init.c'; then $(CYGPATH_W) 'iol_init.c'; else $(CYGPATH_W) '$(srcdir)/iol_init.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(ioload_CFLAGS) $(CFLAGS) -c -o ioload-iol_init.obj `if test -f 'iol_init.c'; then $(CYGPATH_W) 'iol_init.c'; else $(CYGPATH_W) '$(srcdir)/iol_init.c'; fi`
 
 ioload-iol_iotest.o: iol_iotest.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ioload-iol_iotest.o -MD -MP -MF $(DEPDIR)/ioload-iol_iotest.Tpo -c -o ioload-iol_iotest.o `test -f 'iol_iotest.c' || echo '$(srcdir)/'`iol_iotest.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(ioload_CFLAGS) $(CFLAGS) -MT ioload-iol_iotest.o -MD -MP -MF $(DEPDIR)/ioload-iol_iotest.Tpo -c -o ioload-iol_iotest.o `test -f 'iol_iotest.c' || echo '$(srcdir)/'`iol_iotest.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ioload-iol_iotest.Tpo $(DEPDIR)/ioload-iol_iotest.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iol_iotest.c' object='ioload-iol_iotest.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ioload-iol_iotest.o `test -f 'iol_iotest.c' || echo '$(srcdir)/'`iol_iotest.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(ioload_CFLAGS) $(CFLAGS) -c -o ioload-iol_iotest.o `test -f 'iol_iotest.c' || echo '$(srcdir)/'`iol_iotest.c
 
 ioload-iol_iotest.obj: iol_iotest.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ioload-iol_iotest.obj -MD -MP -MF $(DEPDIR)/ioload-iol_iotest.Tpo -c -o ioload-iol_iotest.obj `if test -f 'iol_iotest.c'; then $(CYGPATH_W) 'iol_iotest.c'; else $(CYGPATH_W) '$(srcdir)/iol_iotest.c'; fi`
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(ioload_CFLAGS) $(CFLAGS) -MT ioload-iol_iotest.obj -MD -MP -MF $(DEPDIR)/ioload-iol_iotest.Tpo -c -o ioload-iol_iotest.obj `if test -f 'iol_iotest.c'; then $(CYGPATH_W) 'iol_iotest.c'; else $(CYGPATH_W) '$(srcdir)/iol_iotest.c'; fi`
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ioload-iol_iotest.Tpo $(DEPDIR)/ioload-iol_iotest.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iol_iotest.c' object='ioload-iol_iotest.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ioload-iol_iotest.obj `if test -f 'iol_iotest.c'; then $(CYGPATH_W) 'iol_iotest.c'; else $(CYGPATH_W) '$(srcdir)/iol_iotest.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(ioload_CFLAGS) $(CFLAGS) -c -o ioload-iol_iotest.obj `if test -f 'iol_iotest.c'; then $(CYGPATH_W) 'iol_iotest.c'; else $(CYGPATH_W) '$(srcdir)/iol_iotest.c'; fi`
 
 ioload-iol_main.o: iol_main.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ioload-iol_main.o -MD -MP -MF $(DEPDIR)/ioload-iol_main.Tpo -c -o ioload-iol_main.o `test -f 'iol_main.c' || echo '$(srcdir)/'`iol_main.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(ioload_CFLAGS) $(CFLAGS) -MT ioload-iol_main.o -MD -MP -MF $(DEPDIR)/ioload-iol_main.Tpo -c -o ioload-iol_main.o `test -f 'iol_main.c' || echo '$(srcdir)/'`iol_main.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ioload-iol_main.Tpo $(DEPDIR)/ioload-iol_main.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iol_main.c' object='ioload-iol_main.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ioload-iol_main.o `test -f 'iol_main.c' || echo '$(srcdir)/'`iol_main.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(ioload_CFLAGS) $(CFLAGS) -c -o ioload-iol_main.o `test -f 'iol_main.c' || echo '$(srcdir)/'`iol_main.c
 
 ioload-iol_main.obj: iol_main.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ioload-iol_main.obj -MD -MP -MF $(DEPDIR)/ioload-iol_main.Tpo -c -o ioload-iol_main.obj `if test -f 'iol_main.c'; then $(CYGPATH_W) 'iol_main.c'; else $(CYGPATH_W) '$(srcdir)/iol_main.c'; fi`
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(ioload_CFLAGS) $(CFLAGS) -MT ioload-iol_main.obj -MD -MP -MF $(DEPDIR)/ioload-iol_main.Tpo -c -o ioload-iol_main.obj `if test -f 'iol_main.c'; then $(CYGPATH_W) 'iol_main.c'; else $(CYGPATH_W) '$(srcdir)/iol_main.c'; fi`
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ioload-iol_main.Tpo $(DEPDIR)/ioload-iol_main.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iol_main.c' object='ioload-iol_main.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ioload-iol_main.obj `if test -f 'iol_main.c'; then $(CYGPATH_W) 'iol_main.c'; else $(CYGPATH_W) '$(srcdir)/iol_main.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(ioload_CFLAGS) $(CFLAGS) -c -o ioload-iol_main.obj `if test -f 'iol_main.c'; then $(CYGPATH_W) 'iol_main.c'; else $(CYGPATH_W) '$(srcdir)/iol_main.c'; fi`
 
 ioload-iol_output.o: iol_output.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ioload-iol_output.o -MD -MP -MF $(DEPDIR)/ioload-iol_output.Tpo -c -o ioload-iol_output.o `test -f 'iol_output.c' || echo '$(srcdir)/'`iol_output.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(ioload_CFLAGS) $(CFLAGS) -MT ioload-iol_output.o -MD -MP -MF $(DEPDIR)/ioload-iol_output.Tpo -c -o ioload-iol_output.o `test -f 'iol_output.c' || echo '$(srcdir)/'`iol_output.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ioload-iol_output.Tpo $(DEPDIR)/ioload-iol_output.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iol_output.c' object='ioload-iol_output.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ioload-iol_output.o `test -f 'iol_output.c' || echo '$(srcdir)/'`iol_output.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(ioload_CFLAGS) $(CFLAGS) -c -o ioload-iol_output.o `test -f 'iol_output.c' || echo '$(srcdir)/'`iol_output.c
 
 ioload-iol_output.obj: iol_output.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ioload-iol_output.obj -MD -MP -MF $(DEPDIR)/ioload-iol_output.Tpo -c -o ioload-iol_output.obj `if test -f 'iol_output.c'; then $(CYGPATH_W) 'iol_output.c'; else $(CYGPATH_W) '$(srcdir)/iol_output.c'; fi`
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(ioload_CFLAGS) $(CFLAGS) -MT ioload-iol_output.obj -MD -MP -MF $(DEPDIR)/ioload-iol_output.Tpo -c -o ioload-iol_output.obj `if test -f 'iol_output.c'; then $(CYGPATH_W) 'iol_output.c'; else $(CYGPATH_W) '$(srcdir)/iol_output.c'; fi`
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ioload-iol_output.Tpo $(DEPDIR)/ioload-iol_output.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iol_output.c' object='ioload-iol_output.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ioload-iol_output.obj `if test -f 'iol_output.c'; then $(CYGPATH_W) 'iol_output.c'; else $(CYGPATH_W) '$(srcdir)/iol_output.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ioload_CPPFLAGS) $(CPPFLAGS) $(ioload_CFLAGS) $(CFLAGS) -c -o ioload-iol_output.obj `if test -f 'iol_output.c'; then $(CYGPATH_W) 'iol_output.c'; else $(CYGPATH_W) '$(srcdir)/iol_output.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

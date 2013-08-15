@@ -52,6 +52,9 @@ am_iofill_OBJECTS = iofill-iof_init.$(OBJEXT) \
 	iofill-iof_output.$(OBJEXT)
 iofill_OBJECTS = $(am_iofill_OBJECTS)
 iofill_DEPENDENCIES =
+iofill_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(CCLD) $(iofill_CFLAGS) $(CFLAGS) \
+	$(iofill_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -193,8 +196,10 @@ iofill_SOURCES = iof_init.c \
                  iof_output.c
 
 iofill_LDADD = -L../../lib -liobench
+iofill_LDFLAGS = -all-static
 iofill_INCLUDES = iofill.h
 iofill_CPPFLAGS = -I$(top_builddir)/lib
+iofill_CFLAGS = -O3
 all: all-am
 
 .SUFFIXES:
@@ -274,7 +279,7 @@ clean-binPROGRAMS:
 	rm -f $$list
 iofill$(EXEEXT): $(iofill_OBJECTS) $(iofill_DEPENDENCIES) 
 	@rm -f iofill$(EXEEXT)
-	$(LINK) $(iofill_OBJECTS) $(iofill_LDADD) $(LIBS)
+	$(iofill_LINK) $(iofill_OBJECTS) $(iofill_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -309,60 +314,60 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
 iofill-iof_init.o: iof_init.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT iofill-iof_init.o -MD -MP -MF $(DEPDIR)/iofill-iof_init.Tpo -c -o iofill-iof_init.o `test -f 'iof_init.c' || echo '$(srcdir)/'`iof_init.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(iofill_CFLAGS) $(CFLAGS) -MT iofill-iof_init.o -MD -MP -MF $(DEPDIR)/iofill-iof_init.Tpo -c -o iofill-iof_init.o `test -f 'iof_init.c' || echo '$(srcdir)/'`iof_init.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/iofill-iof_init.Tpo $(DEPDIR)/iofill-iof_init.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iof_init.c' object='iofill-iof_init.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o iofill-iof_init.o `test -f 'iof_init.c' || echo '$(srcdir)/'`iof_init.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(iofill_CFLAGS) $(CFLAGS) -c -o iofill-iof_init.o `test -f 'iof_init.c' || echo '$(srcdir)/'`iof_init.c
 
 iofill-iof_init.obj: iof_init.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT iofill-iof_init.obj -MD -MP -MF $(DEPDIR)/iofill-iof_init.Tpo -c -o iofill-iof_init.obj `if test -f 'iof_init.c'; then $(CYGPATH_W) 'iof_init.c'; else $(CYGPATH_W) '$(srcdir)/iof_init.c'; fi`
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(iofill_CFLAGS) $(CFLAGS) -MT iofill-iof_init.obj -MD -MP -MF $(DEPDIR)/iofill-iof_init.Tpo -c -o iofill-iof_init.obj `if test -f 'iof_init.c'; then $(CYGPATH_W) 'iof_init.c'; else $(CYGPATH_W) '$(srcdir)/iof_init.c'; fi`
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/iofill-iof_init.Tpo $(DEPDIR)/iofill-iof_init.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iof_init.c' object='iofill-iof_init.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o iofill-iof_init.obj `if test -f 'iof_init.c'; then $(CYGPATH_W) 'iof_init.c'; else $(CYGPATH_W) '$(srcdir)/iof_init.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(iofill_CFLAGS) $(CFLAGS) -c -o iofill-iof_init.obj `if test -f 'iof_init.c'; then $(CYGPATH_W) 'iof_init.c'; else $(CYGPATH_W) '$(srcdir)/iof_init.c'; fi`
 
 iofill-iof_iotest.o: iof_iotest.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT iofill-iof_iotest.o -MD -MP -MF $(DEPDIR)/iofill-iof_iotest.Tpo -c -o iofill-iof_iotest.o `test -f 'iof_iotest.c' || echo '$(srcdir)/'`iof_iotest.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(iofill_CFLAGS) $(CFLAGS) -MT iofill-iof_iotest.o -MD -MP -MF $(DEPDIR)/iofill-iof_iotest.Tpo -c -o iofill-iof_iotest.o `test -f 'iof_iotest.c' || echo '$(srcdir)/'`iof_iotest.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/iofill-iof_iotest.Tpo $(DEPDIR)/iofill-iof_iotest.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iof_iotest.c' object='iofill-iof_iotest.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o iofill-iof_iotest.o `test -f 'iof_iotest.c' || echo '$(srcdir)/'`iof_iotest.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(iofill_CFLAGS) $(CFLAGS) -c -o iofill-iof_iotest.o `test -f 'iof_iotest.c' || echo '$(srcdir)/'`iof_iotest.c
 
 iofill-iof_iotest.obj: iof_iotest.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT iofill-iof_iotest.obj -MD -MP -MF $(DEPDIR)/iofill-iof_iotest.Tpo -c -o iofill-iof_iotest.obj `if test -f 'iof_iotest.c'; then $(CYGPATH_W) 'iof_iotest.c'; else $(CYGPATH_W) '$(srcdir)/iof_iotest.c'; fi`
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(iofill_CFLAGS) $(CFLAGS) -MT iofill-iof_iotest.obj -MD -MP -MF $(DEPDIR)/iofill-iof_iotest.Tpo -c -o iofill-iof_iotest.obj `if test -f 'iof_iotest.c'; then $(CYGPATH_W) 'iof_iotest.c'; else $(CYGPATH_W) '$(srcdir)/iof_iotest.c'; fi`
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/iofill-iof_iotest.Tpo $(DEPDIR)/iofill-iof_iotest.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iof_iotest.c' object='iofill-iof_iotest.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o iofill-iof_iotest.obj `if test -f 'iof_iotest.c'; then $(CYGPATH_W) 'iof_iotest.c'; else $(CYGPATH_W) '$(srcdir)/iof_iotest.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(iofill_CFLAGS) $(CFLAGS) -c -o iofill-iof_iotest.obj `if test -f 'iof_iotest.c'; then $(CYGPATH_W) 'iof_iotest.c'; else $(CYGPATH_W) '$(srcdir)/iof_iotest.c'; fi`
 
 iofill-iof_main.o: iof_main.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT iofill-iof_main.o -MD -MP -MF $(DEPDIR)/iofill-iof_main.Tpo -c -o iofill-iof_main.o `test -f 'iof_main.c' || echo '$(srcdir)/'`iof_main.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(iofill_CFLAGS) $(CFLAGS) -MT iofill-iof_main.o -MD -MP -MF $(DEPDIR)/iofill-iof_main.Tpo -c -o iofill-iof_main.o `test -f 'iof_main.c' || echo '$(srcdir)/'`iof_main.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/iofill-iof_main.Tpo $(DEPDIR)/iofill-iof_main.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iof_main.c' object='iofill-iof_main.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o iofill-iof_main.o `test -f 'iof_main.c' || echo '$(srcdir)/'`iof_main.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(iofill_CFLAGS) $(CFLAGS) -c -o iofill-iof_main.o `test -f 'iof_main.c' || echo '$(srcdir)/'`iof_main.c
 
 iofill-iof_main.obj: iof_main.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT iofill-iof_main.obj -MD -MP -MF $(DEPDIR)/iofill-iof_main.Tpo -c -o iofill-iof_main.obj `if test -f 'iof_main.c'; then $(CYGPATH_W) 'iof_main.c'; else $(CYGPATH_W) '$(srcdir)/iof_main.c'; fi`
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(iofill_CFLAGS) $(CFLAGS) -MT iofill-iof_main.obj -MD -MP -MF $(DEPDIR)/iofill-iof_main.Tpo -c -o iofill-iof_main.obj `if test -f 'iof_main.c'; then $(CYGPATH_W) 'iof_main.c'; else $(CYGPATH_W) '$(srcdir)/iof_main.c'; fi`
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/iofill-iof_main.Tpo $(DEPDIR)/iofill-iof_main.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iof_main.c' object='iofill-iof_main.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o iofill-iof_main.obj `if test -f 'iof_main.c'; then $(CYGPATH_W) 'iof_main.c'; else $(CYGPATH_W) '$(srcdir)/iof_main.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(iofill_CFLAGS) $(CFLAGS) -c -o iofill-iof_main.obj `if test -f 'iof_main.c'; then $(CYGPATH_W) 'iof_main.c'; else $(CYGPATH_W) '$(srcdir)/iof_main.c'; fi`
 
 iofill-iof_output.o: iof_output.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT iofill-iof_output.o -MD -MP -MF $(DEPDIR)/iofill-iof_output.Tpo -c -o iofill-iof_output.o `test -f 'iof_output.c' || echo '$(srcdir)/'`iof_output.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(iofill_CFLAGS) $(CFLAGS) -MT iofill-iof_output.o -MD -MP -MF $(DEPDIR)/iofill-iof_output.Tpo -c -o iofill-iof_output.o `test -f 'iof_output.c' || echo '$(srcdir)/'`iof_output.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/iofill-iof_output.Tpo $(DEPDIR)/iofill-iof_output.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iof_output.c' object='iofill-iof_output.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o iofill-iof_output.o `test -f 'iof_output.c' || echo '$(srcdir)/'`iof_output.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(iofill_CFLAGS) $(CFLAGS) -c -o iofill-iof_output.o `test -f 'iof_output.c' || echo '$(srcdir)/'`iof_output.c
 
 iofill-iof_output.obj: iof_output.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT iofill-iof_output.obj -MD -MP -MF $(DEPDIR)/iofill-iof_output.Tpo -c -o iofill-iof_output.obj `if test -f 'iof_output.c'; then $(CYGPATH_W) 'iof_output.c'; else $(CYGPATH_W) '$(srcdir)/iof_output.c'; fi`
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(iofill_CFLAGS) $(CFLAGS) -MT iofill-iof_output.obj -MD -MP -MF $(DEPDIR)/iofill-iof_output.Tpo -c -o iofill-iof_output.obj `if test -f 'iof_output.c'; then $(CYGPATH_W) 'iof_output.c'; else $(CYGPATH_W) '$(srcdir)/iof_output.c'; fi`
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/iofill-iof_output.Tpo $(DEPDIR)/iofill-iof_output.Po
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iof_output.c' object='iofill-iof_output.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o iofill-iof_output.obj `if test -f 'iof_output.c'; then $(CYGPATH_W) 'iof_output.c'; else $(CYGPATH_W) '$(srcdir)/iof_output.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(iofill_CPPFLAGS) $(CPPFLAGS) $(iofill_CFLAGS) $(CFLAGS) -c -o iofill-iof_output.obj `if test -f 'iof_output.c'; then $(CYGPATH_W) 'iof_output.c'; else $(CYGPATH_W) '$(srcdir)/iof_output.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
