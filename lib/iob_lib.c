@@ -434,7 +434,7 @@ iob_read (int fd, char *buf, uint32_t length, uint64_t offset)
 {
 #if     defined(__CYGWIN__)
         lseek(fd, offset, SEEK_SET);
-        return (read(fd, buf, count) );
+        return (read(fd, buf, length) );
 #else
         return (pread (fd, buf, length, offset) );
 #endif
@@ -445,7 +445,7 @@ iob_write (int fd, char *buf, uint32_t length, uint64_t offset)
 {
 #if     defined(__CYGWIN__)
         lseek(fd, offset, SEEK_SET);
-        return (write(fd, buf, count) );
+        return (write(fd, buf, length) );
 #else
         return (pwrite (fd, buf, length, offset) );
 #endif
